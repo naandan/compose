@@ -1,0 +1,10 @@
+version: '3.1'
+
+services:
+  grav:
+    image: grav:latest
+    container_name: webhoster
+    ports:
+      - 8085:80
+    volumes:
+      - /home/nandan/data/grav:/var/www/html
