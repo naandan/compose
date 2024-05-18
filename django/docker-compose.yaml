@@ -1,0 +1,34 @@
+version: "3"
+
+services:
+  payment:
+    image: payment:test
+    container_name: payment
+    ports:
+      - "8070:8020"
+    environment:
+      ALLOWED_HOSTS: payment.dev-sti-group.biz.id
+      CSRF_TRUSTED_ORIGINS: https://payment.dev-sti-group.biz.id
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      RQ_HOST: redis
+      RQ_PORT: 6379
+      PGSQL_HOST: postgres
+      PGSQL_USER: root
+      PGSQL_PASSWORD: password
+    volumes:
+      - payment_data:/opt/app/web_apps/media
+    networks:
+      redis_default:
+      postgres_pgsql-network:
+
+
+volumes:
+  payment_data:
+    name: payment_data
+
+networks:
+  redis_default:
+    external: true
+  postgres_pgsql-network:
+    external: true

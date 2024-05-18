@@ -1,0 +1,6 @@
+app/media/
+app/node_modules/
+app/.env
+app/.env.example
+app/static/CACHE/
+env/

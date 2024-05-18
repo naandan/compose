@@ -1,0 +1,31 @@
+{
+  "url": "http://localhost:2368",
+  "server": {
+    "port": 2368,
+    "host": "::"
+  },
+  "mail": {
+    "transport": "SMTP",
+    "from": "admin@straile.blue",
+    "options": {
+      "service": "Brevo",
+      "host": "smtp-relay.brevo.com",
+      "port": 587,
+      "secureConnection": false,
+      "auth": {
+        "user": "nandanramdani608@gmail.com",
+        "pass": "aWjQMZydc56N1tns"
+      }
+    }
+  },
+  "logging": {
+    "transports": [
+      "file",
+      "stdout"
+    ]
+  },
+  "process": "systemd",
+  "paths": {
+    "contentPath": "/var/lib/ghost/content"
+  }
+}
