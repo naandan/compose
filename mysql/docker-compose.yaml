@@ -32,7 +32,7 @@ services:
 networks:
   mysql-network:
     name: mysql-network
-  
+
 volumes:
   mysql-data:
     name: mysql-data
