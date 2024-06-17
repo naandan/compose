@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  dragonfly:
+    image: 'docker.dragonflydb.io/dragonflydb/dragonfly'
+    container_name: dragonfly
+    ulimits:
+      memlock: -1
+    ports:
+      - "6379:6379"
+    volumes:
+      - dragonfly-data:/data
+    networks:
+      - dragonfly-network
+
+  redis-commander:
+    image: rediscommander/redis-commander
+    container_name: redis-commander
+    environment:
+      - REDIS_HOSTS=dragonfly
+    ports:
+      - "8081:8081"
+    networks:
+      - dragonfly-network
+    depends_on:
+      - dragonfly
+
+networks:
+  dragonfly-network:
+    name: dragonfly-network
+  
+volumes:
+  dragonfly-data:
+    name: dragonfly-data
