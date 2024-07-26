@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  web:
+    image: nandanramdani/profile:main
+    container_name: profile
+    ports:
+      - "8072:3000"
+    networks:
+      - profile-network
+
+networks:
+  profile-network:
+    name: profile-network

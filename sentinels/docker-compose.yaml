@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  master:
+    image: redis
+    container_name: redis-master
+    networks:
+      - redis-sentinel-network
+
+  sentinel:
+    image: bitnami/redis-sentinel:latest
+    container_name: redis-sentinel
+    environment:
+      REDIS_MASTER_HOST: redis-master
+      REDIS_SENTINEL_PORT_NUMBER: 26379
+      REDIS_SENTINEL_QUORUM: 1
+    ports:
+      - "26379:26379"
+    networks:
+      - redis-sentinel-network
+    depends_on:
+      - master
+
+networks:
+  redis-sentinel-network:
+    name: redis-sentinel-network

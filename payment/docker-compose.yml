@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+  payment:
+    image: payment:dev
+    container_name: payment
+    ports:
+      - "8070:8020"
+    environment:
+      ALLOWED_HOSTS: payment.dev-sti-group.biz.id
+      CSRF_TRUSTED_ORIGINS: https://payment.dev-sti-group.biz.id
+      REDIS_HOST: dragonfly
+      REDIS_PORT: 6379
+      RQ_HOST: dragonfly
+      RQ_PORT: 6379
+      PGSQL_HOST: postgres
+      PGSQL_USER: root
+      PGSQL_PASSWORD: password
+      TEAMS_WEBHOOK: https://skylinesemesta365.webhook.office.com/webhookb2/bc6397a5-0420-41e5-b979-f8883fdeebbb@d1fbabd9-f2ce-4691-b440-db5560072b24/IncomingWebhook/4bd047f543474458969804f14d59bd80/a738f92c-3fcc-4d21-9cf1-de181276d6ac
+    volumes:
+      - payment-data:/opt/app/web_apps/media
+    networks:
+      - pgsql-network
+      - redis-network
+
+
+volumes:
+  payment-data:
+    name: payment-data
+
+networks:
+  redis-network:
+    external: true
+  pgsql-network:
+    external: true

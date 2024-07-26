@@ -27,6 +27,8 @@ services:
       - pgsql-network
     volumes:
       - pgadmin-data:/var/lib/pgadmin
+    depends_on:
+      - pgsql
 
 networks:
   pgsql-network:

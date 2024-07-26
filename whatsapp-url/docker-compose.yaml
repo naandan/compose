@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  web:
+    image: nandanramdani/whatsapp-url:main
+    container_name: wagen
+    restart: always
+    ports:
+      - "5054:80"
+    networks:
+      - whatsapp-url-network
+    
+networks:
+  whatsapp-url-network:
+    name: whatsapp-url-network

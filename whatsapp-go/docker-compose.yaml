@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+  backend:
+    image: nandanramdani/whatsapp-go-backend:main
+    container_name: wago
+    restart: always
+    ports:
+      - "5052:8000"
+    environment:
+      DB_HOST: postgres
+      DB_PASS: password
+      ALLOW_ORIGIN: https://fe.aeria.my.id
+    networks:
+      - whatsapp-go-network
+      - postgres_pgsql-network
+
+  frontend:
+    image: nandanramdani/whatsapp-go-frontend:main
+    container_name: ware
+    restart: always
+    ports:
+      - "5053:80"
+    networks:
+      - whatsapp-go-network
+    depends_on:
+      - backend
+
+networks:
+  whatsapp-go-network:
+    name: whatsapp-go-network
+  postgres_pgsql-network:
+    external: true
