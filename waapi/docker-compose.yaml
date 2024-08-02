@@ -2,10 +2,10 @@ version: '3'
 
 services:
   web:
-    image: nandanramdani/waapi:main
+    image: ghcr.io/naandan/waapi:main
     container_name: waapi
     environment:
-      SECRET: secret
+      SECRET: FXkcf7oNVS
       PORT: 3000
       NODE_ENV: production
       DB_HOST: mysql
