@@ -11,18 +11,18 @@ services:
     networks:
       - mysql-network
 
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin:latest
-    container_name: phpmyadmin
-    environment:
-      PMA_ARBITRARY: 1
-      PMA_HOST: mysql
-    ports:
-      - "8080:80"
-    networks:
-      - mysql-network
-    depends_on:
-      - mysql
+  # phpmyadmin:
+  #   image: phpmyadmin/phpmyadmin:latest
+  #   container_name: phpmyadmin
+  #   environment:
+  #     PMA_ARBITRARY: 1
+  #     PMA_HOST: mysql
+  #   ports:
+  #     - "8080:80"
+  #   networks:
+  #     - mysql-network
+  #   depends_on:
+  #     - mysql
 
 networks:
   mysql-network:

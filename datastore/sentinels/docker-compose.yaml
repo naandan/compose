@@ -9,7 +9,7 @@ services:
     image: bitnami/redis-sentinel:latest
     container_name: redis-sentinel
     env_file:
-      - .env.sentinels
+      - .env
     ports:
       - "26379:26379"
     networks:
