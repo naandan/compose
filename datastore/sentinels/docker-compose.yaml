@@ -2,12 +2,14 @@ services:
   master:
     image: redis
     container_name: redis-master
+    restart: always
     networks:
       - redis-sentinel-network
 
   sentinel:
     image: bitnami/redis-sentinel:latest
     container_name: redis-sentinel
+    restart: always
     env_file:
       - .env
     ports:
