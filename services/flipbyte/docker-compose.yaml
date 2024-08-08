@@ -1,0 +1,25 @@
+services:
+  wordpress:
+    image: wordpress
+    container_name: flipbyte
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - 8071:80
+    volumes:
+      - ./flipbyte-data:/var/www/html
+    networks:
+      - flipbyte-network
+      - mysql-network
+
+
+# volumes:
+#   flipbyte-data:
+#     name: flipbyte-data
+
+networks:
+  flipbyte-network:
+    name: flipbyte-network
+  mysql-network:
+    external: true

@@ -1,0 +1,19 @@
+services:
+  drupal:
+    image: drupal:latest
+    container_name: drupal
+    ports:
+      - "8075:80"
+    volumes:
+      - ./drupal-data:/var/www/html
+    env_file:
+      - .env
+    networks:
+      - mysql-network
+      - drupal-network
+
+networks:
+  drupal-network:
+    name: drupal-network
+  mysql-network:
+    external: true

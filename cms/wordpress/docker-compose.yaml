@@ -1,0 +1,22 @@
+services:
+  wordpress:
+    image: wordpress
+    container_name: wordpress
+    restart: always
+    ports:
+      - 8070:80
+    env_file:
+      - .env
+    volumes:
+#      - wordpress-data:/var/www/html
+       - ./wordpress-data:/var/www/html
+    networks:
+      - wordpress-network
+
+#volumes:
+#  wordpress-data:
+#    name: wordpress-data
+
+networks:
+  wordpress-network:
+    name: wordpress-network

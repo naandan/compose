@@ -1,0 +1,24 @@
+services:
+  redis:
+    image: redis
+    container_name: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - redis-network
+
+  redis-commander:
+    image: rediscommander/redis-commander
+    container_name: redis-commander
+    environment:
+      - REDIS_HOSTS=redis
+    ports:
+      - "8081:8081"
+    networks:
+      - redis-network
+    depends_on:
+      - redis
+
+networks:
+  redis-network:
+    name: redis-network

@@ -1,0 +1,23 @@
+services:
+  ghost:
+    image: ghost:5-alpine
+    container_name: ghost
+    env_file:
+      - .env
+    ports:
+      - 8001:2368
+    networks:
+      - ghost-network
+      - mysql-network
+    volumes:
+      - ghost-data:/var/lib/ghost/content
+      - ./config.production.json:/var/lib/ghost/config.production.json
+
+volumes:
+  ghost-data:
+    name: ghost-data
+networks:
+  ghost-network:
+    name: ghost-network
+  mysql-network:
+    external: true

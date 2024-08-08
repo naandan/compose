@@ -1,0 +1,36 @@
+services:
+  ldap:
+    image: osixia/openldap:1.5.0
+    container_name: ldap
+    env_file:
+      - .env
+    ports:
+      - "389:389"
+      - "636:636"
+    volumes:
+      - ldap-data:/var/lib/ldap
+      - ldap-config:/etc/ldap/slapd.d
+    networks:
+      - ldap-network
+
+  phpldapadmin:
+    image: osixia/phpldapadmin:0.9.0
+    container_name: ldapadmin
+    environment:
+      PHPLDAPADMIN_LDAP_HOSTS: ldap
+    ports:
+      - "6443:443"
+    networks:
+      - ldap-network
+    depends_on:
+      - ldap
+
+networks:
+  ldap-network:
+    name: ldap-network
+
+volumes:
+  ldap-data:
+    name: ldap-data
+  ldap-config:
+    name: ldap-config

@@ -1,0 +1,19 @@
+services:
+  edaily:
+    image: edaily:dev
+    container_name: edaily
+    ports:
+      - "8071:8020"
+    environment:
+      SENTINELS: 192.168.109.80:26379
+      POSTGR_DB_HOST: 192.168.109.80
+      DEV: 1
+      WEB_ONLY: 1
+      CELERY_RESULT_BACKEND: sentinel://192.168.109.80:26379/1
+      CELERY_BROKER_URL: amqp://guest:guest@192.168.109.80:5672//
+    networks:
+      - edaily-network
+
+networks:
+  edaily-network:
+    name: edaily-network

@@ -1,0 +1,37 @@
+services:
+  pgsql:
+    image: postgres
+    container_name: postgres
+    ports: 
+      - "5432:5432"
+    env_file:
+      - .env
+    networks:
+      - pgsql-network
+    volumes:
+      - pgsql-data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "password"
+    networks:
+      - pgsql-network
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    depends_on:
+      - pgsql
+
+networks:
+  pgsql-network:
+    name: pgsql-network
+volumes:
+  pgsql-data:
+    name: pgsql-data
+  pgadmin-data:
+    name: pgadmin-data
+

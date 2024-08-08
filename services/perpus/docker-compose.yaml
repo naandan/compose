@@ -1,0 +1,23 @@
+services:
+  web:
+    image: nandanramdani/perpus:main
+    container_name: perpus
+    env_file:
+      - .env
+    ports:
+      - "8070:8020"
+    networks:
+      - perpus-network
+      - mysql-network
+    volumes:
+      - perpus_data:/opt/app/web_apps/media
+
+networks:
+  perpus-network:
+    name: perpus-network
+  mysql-network:
+    external: true
+
+volumes:
+  perpus_data:
+    name: perpus_data
