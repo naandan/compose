@@ -1,5 +1,3 @@
-version: "3"
-
 services:
   backend:
     image: ghcr.io/naandan/whatsapp-go-backend:main
