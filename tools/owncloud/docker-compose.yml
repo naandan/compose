@@ -1,0 +1,21 @@
+services:
+  owncloud:
+    image: owncloud/server:latest
+    container_name: owncloud
+    ports:
+      - "8074:8080"
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - owncloud-data:/mnt/data
+    networks:
+      - owncloud-networks
+
+volumes:
+  owncloud-data:
+    name: owncloud-data
+
+networks:
+  owncloud-networks:
+    name: owncloud-networks

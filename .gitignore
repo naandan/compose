@@ -1,2 +1,3 @@
 services/flipbyte/flipbyte-data
 services/flipbyte/flipbyte
+datastore/minio/minio

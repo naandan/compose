@@ -1,0 +1,22 @@
+services:
+    flowise:
+        image: flowiseai/flowise
+        restart: always
+        container_name: flowise
+        env_file:
+            - .env
+        ports:
+            - 8060:3000
+        volumes:
+            - flowise-data:/root/.flowise
+        networks:
+            - flowise-network
+        entrypoint: /bin/sh -c "sleep 3; flowise start"
+
+networks:
+    flowise-network:
+        name: flowise-network
+
+volumes:
+    flowise-data:
+        name: flowise-data
