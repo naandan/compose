@@ -3,8 +3,11 @@ services:
     image: redis
     container_name: redis-master
     restart: always
+    ports:
+      - "6380:6380"
     networks:
       - redis-sentinel-network
+    command: redis-server --port 6380
 
   sentinel:
     image: bitnami/redis-sentinel:latest
