@@ -1,0 +1,24 @@
+services:
+  chatline:
+    image: ghcr.io/naandan/chatline:main
+    container_name: chatline
+    restart: always
+    ports:
+      - "8071:8020"
+    env_file:
+      - .env.chatline
+    networks:
+      - chatline-network
+
+  chatserver:
+    image: ghcr.io/naandan/chat-go:main
+    container_name: chatserver
+    restart: always
+    env_file:
+      - .env.chatserver
+    networks:
+      - chatline-network
+
+networks:
+  chatline-network:
+    name: chatline-network
