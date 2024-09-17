@@ -8,6 +8,7 @@ services:
     networks:
       - redis-sentinel-network
     command: redis-server --port 6380
+    # command: redis-server --port 6380 --requirepass Tahun2024,-
 
   sentinel:
     image: bitnami/redis-sentinel:latest

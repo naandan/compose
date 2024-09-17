@@ -11,6 +11,7 @@ services:
       - dragonfly-data:/data
     networks:
       - dragonfly-network
+    # command: --requirepass Tahun2024,-
 
   # redis-commander:
   #   image: rediscommander/redis-commander
