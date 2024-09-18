@@ -1,0 +1,21 @@
+services:
+  linkding:
+    container_name: linkding
+    image: sissbruecker/linkding:latest
+    restart: always
+    ports:
+      - "8073:9090"
+    env_file:
+      - .env
+    volumes:
+      - "linkding-data:/etc/linkding/data"
+    networks:
+      - linkding-network
+
+volumes:
+  linkding-data:
+    name: linkding-data
+
+networks:
+  linkding-network:
+    name: linkding-network

@@ -1,0 +1,21 @@
+services:
+  linkwarden:
+    image: ghcr.io/linkwarden/linkwarden:latest
+    container_name: linkwarden
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - 8072:3000
+    volumes:
+      - linkwarden-data:/data/data
+    networks:
+      - linkwarden-network
+
+volumes:
+  linkwarden-data:
+    name:  linkwarden-data
+
+networks:
+  linkwarden-network:
+    name: linkwarden-network
