@@ -1,0 +1,16 @@
+services:
+  helper:
+    image: eloufirhatim/helper:latest
+    container_name: helper-server
+    env_file:
+      - .env
+    ports:
+      - 8072:8000
+    volumes:
+      - /etc/localtime:/etc/localtime
+    networks:
+      - project-management-network
+
+networks:
+  project-management-network:
+    name: project-management-network

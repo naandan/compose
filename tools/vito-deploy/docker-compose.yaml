@@ -1,0 +1,23 @@
+services:
+  vito:
+    image: vitodeploy/vito:latest
+    container_name: vito
+    ports:
+      - "8072:80"
+    environment:
+      APP_KEY: "aBCIdPAH29vTmbZKw90Ej35U2GAhPDwk"
+      NAME: "Nandan"
+      EMAIL: "nandan@gmail.com"
+      PASSWORD: "Tahun2024,-"
+    volumes:
+      - "vito-data:/var/www/html/storage"
+    networks:
+      - vito-network
+
+volumes:
+  vito-data:
+    name: vito-data
+
+networks:
+  vito-network:
+    name: vito-network
