@@ -5,12 +5,13 @@ services:
     ports:
       - 8085:80
     volumes:
-      - ./grav-data:/var/www/html
+      # - ./grav-data:/var/www/html
+      - grav-data:/var/www/html
 
-# volumes:
-#   grav-data:
-#     driver: local
-#     driver_opts:
-#       type: none
-#       device: /home/nandan/data/grav
-#       o: bind
+volumes:
+  grav-data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/nandan/mount/grav
+      o: bind
