@@ -1,0 +1,12 @@
+services:
+    excalidraw:
+        image: 'docker.io/excalidraw/excalidraw:latest'
+        container_name: excalidraw
+        ports:
+            - '8072:80'
+        networks:
+            - excalidraw-network
+
+networks:
+    excalidraw-network:
+        name: excalidraw-network
