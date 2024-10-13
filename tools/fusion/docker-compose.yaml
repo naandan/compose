@@ -1,0 +1,20 @@
+services:
+    fusion:
+        image: rook1e404/fusion
+        container_name: fusion
+        ports:
+            - 8072:8080
+        volumes:
+            - fusion-data:/data
+        environment:
+            - PASSWORD=Cloves32!
+        networks:
+            - fusion-network
+
+networks:
+    fusion-network:
+        name: fusion-network
+
+volumes:
+    fusion-data:
+        name: fusion-data
