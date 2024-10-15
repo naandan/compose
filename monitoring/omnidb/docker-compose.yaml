@@ -1,0 +1,18 @@
+services:
+  omnidb:
+    image: omnidbteam/omnidb:latest
+    container_name: omnidb
+    volumes:
+        - omnidb-data:/home/omnidb/.omnidb/omnidb-server
+    ports:
+        - '3000:8000'
+    networks:
+        - omnidb-network
+
+networks:
+  omnidb-network:
+    name: omnidb-network
+
+volumes:
+  omnidb-data:
+    name: omnidb-data
