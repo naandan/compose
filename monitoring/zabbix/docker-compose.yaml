@@ -1,0 +1,74 @@
+services:
+  pgsql:
+    image: postgres:16
+    container_name: zabbix-db
+    environment:
+      - POSTGRES_DB=zabbix
+      - POSTGRES_USER=zabbix
+      - POSTGRES_PASSWORD=zabbix32!
+    ports:
+      - "5433:5432"
+    volumes:
+      - zabbix-db-data:/var/lib/postgresql/data
+    networks:
+      - zabbix-network
+    restart: always
+
+  zabbix-server:
+    image: zabbix/zabbix-server-pgsql:latest
+    container_name: zabbix-server
+    environment:
+      - DB_SERVER_HOST=pgsql
+      - POSTGRES_DB=zabbix
+      - POSTGRES_USER=zabbix
+      - POSTGRES_PASSWORD=zabbix32!
+    ports:
+      - "10051:10051"
+    volumes:
+      - zabbix-server-data:/var/lib/zabbix
+    networks:
+      - zabbix-network
+    restart: always
+
+  zabbix-web:
+    image: zabbix/zabbix-web-nginx-pgsql:latest
+    container_name: zabbix-web
+    environment:
+      - DB_SERVER_HOST=pgsql
+      - POSTGRES_DB=zabbix
+      - POSTGRES_USER=zabbix
+      - POSTGRES_PASSWORD=zabbix32!
+      - ZBX_SERVER_HOST=zabbix-server
+      - ZBX_SERVER_PORT=10051
+      - PHP_TZ=Asia/Jakarta
+    ports:
+      - "8072:8080"
+    volumes:
+      - zabbix-web-data:/etc/zabbix
+    networks:
+      - zabbix-network
+    restart: always
+
+  zabbix-agent:
+    image: zabbix/zabbix-agent:latest
+    container_name: zabbix-agent
+    environment:
+      - ZBX_HOSTNAME=zabbix-agent
+      - ZBX_SERVER_HOST=zabbix-server
+      - ZBX_SERVER_PORT=10051
+    ports:
+      - "10050:10050"
+    networks:
+      - zabbix-network
+
+networks:
+  zabbix-network:
+    name: zabbix-network
+  
+volumes:
+  zabbix-server-data:
+    name: zabbix-server-data
+  zabbix-web-data:
+    name: zabbix-web-data
+  zabbix-db-data:
+    name: zabbix-db-data
