@@ -1,0 +1,18 @@
+services:
+  webapp:
+    image: nginx:latest
+    container_name: webapp
+    restart: always
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.webapp.rule=Host(`flipbytedigital.com`)" # Sesuaikan dengan domain Anda
+      - "traefik.http.routers.webapp.entrypoints=websecure"
+     # - "traefik.http.routers.webapp.tls=true"
+      - "traefik.http.routers.webapp.tls.certresolver=myresolver"
+     # - "traefik.http.services.webapp.loadbalancer.server.port=80"
+    networks:
+      - "traefix-network"
+
+networks:
+  traefix-network:
+    external: true

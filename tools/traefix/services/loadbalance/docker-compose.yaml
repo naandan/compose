@@ -1,0 +1,37 @@
+services:
+  webapp2-instance1:
+    image: httpd:latest
+    container_name: webapp2-instance1
+    restart: always
+    volumes:
+      - ./app1/index.html:/usr/local/apache2/htdocs/index.html
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.webapp2.rule=Host(`load.flipbytedigital.com`)"
+      - "traefik.http.routers.webapp2.entrypoints=websecure"
+      - "traefik.http.routers.webapp2.tls=true"
+      - "traefik.http.routers.webapp2.tls.certresolver=myresolver"
+      - "traefik.http.services.webapp2.loadbalancer.server.port=80"
+    networks:
+      - "traefix-network"
+
+  # Instance kedua dengan konten yang berbeda
+  webapp2-instance2:
+    image: httpd:latest
+    container_name: webapp2-instance2
+    restart: always
+    volumes:
+      - ./app2/index.html:/usr/local/apache2/htdocs/index.html
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.webapp2.rule=Host(`load.flipbytedigital.com`)"
+      - "traefik.http.routers.webapp2.entrypoints=websecure"
+      - "traefik.http.routers.webapp2.tls=true"
+      - "traefik.http.routers.webapp2.tls.certresolver=myresolver"
+      - "traefik.http.services.webapp2.loadbalancer.server.port=80"
+    networks:
+      - "traefix-network"
+
+networks:
+  traefix-network:
+    external: true

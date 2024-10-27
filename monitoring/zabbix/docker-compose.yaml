@@ -49,15 +49,15 @@ services:
       - zabbix-network
     restart: always
 
-  zabbix-agent:
-    image: zabbix/zabbix-agent:latest
-    container_name: zabbix-agent
-    environment:
-      - ZBX_SERVER_HOST=zabbix-server
-    ports:
-      - "10050:10050"
-    networks:
-      - zabbix-network
+  # zabbix-agent:
+  #   image: zabbix/zabbix-agent:latest
+  #   container_name: zabbix-agent
+  #   environment:
+  #     - ZBX_SERVER_HOST=zabbix-server
+  #   ports:
+  #     - "10050:10050"
+  #   networks:
+  #     - zabbix-network
 
 networks:
   zabbix-network:

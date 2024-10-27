@@ -3,7 +3,7 @@ services:
         image: 'docker.io/excalidraw/excalidraw:latest'
         container_name: excalidraw
         ports:
-            - '8072:80'
+            - '8073:80'
         networks:
             - excalidraw-network
 
