@@ -3,10 +3,10 @@ services:
     image: redis
     container_name: redis
     ports:
-      - "6379:6379"
+      - "6388:6379"
     networks:
-      - redis-network
-    # command: redis-server --requirepass Tahun2024,-
+      - dragonfly-network
+    command: redis-server --requirepass Tahun2024,-
     
   # redis-commander:
   #   image: rediscommander/redis-commander
@@ -21,5 +21,5 @@ services:
   #     - redis
 
 networks:
-  redis-network:
-    name: redis-network
+  dragonfly-network:
+    external: true

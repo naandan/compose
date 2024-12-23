@@ -1,0 +1,21 @@
+services:
+  mariadb:
+    image: mariadb:latest
+    container_name: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: forward098
+    ports:
+      - "3300:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    networks:
+      - mariadb_network
+
+volumes:
+  mariadb_data:
+    name: mariadb_data
+
+networks:
+  mariadb_network:
+    name: mariadb_network
